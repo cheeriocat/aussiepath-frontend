@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FiUser, FiMail, FiLock, FiEye, FiEyeOff, FiLoader, FiAlertCircle } from 'react-icons/fi';
-import axios from 'axios';
+import api from '../services/api';
 
 export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
@@ -21,7 +21,7 @@ export default function Register() {
     setLoading(true);
     setError('');
     try {
-      const { data } = await axios.post('/api/auth/register', {
+      const { data } = await api.post('/auth/register', {
         name: form.name,
         email: form.email,
         password: form.password,
