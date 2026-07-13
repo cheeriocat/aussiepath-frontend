@@ -54,7 +54,12 @@ export default function JobsAdmin() {
     finally { setDeletingId(null); }
   };
 
-  const inputStyle = { width: '100%', padding: '10px 13px', borderRadius: 8, border: '1.5px solid #e2e8f0', fontSize: '0.875rem', color: '#334155', outline: 'none' };
+  const inputStyle = {
+    width: '100%', padding: '10px 13px', borderRadius: 8,
+    border: '1.5px solid var(--gray-100)', fontSize: '0.875rem',
+    color: 'var(--gray-800)', background: 'var(--white)', outline: 'none',
+    transition: 'all 0.2s'
+  };
 
   return (
     <>
@@ -63,17 +68,17 @@ export default function JobsAdmin() {
         {/* Header Row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <div>
-            <h2 style={{ fontWeight: 800, fontSize: '1.3rem', color: '#0d1f3c' }}>Job Market Listings</h2>
-            <p style={{ color: '#64748b', fontSize: '0.85rem' }}>{jobs.length} active job listings</p>
+            <h2 style={{ fontWeight: 800, fontSize: '1.3rem', color: 'var(--navy)' }}>Job Market Listings</h2>
+            <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem' }}>{jobs.length} active job listings</p>
           </div>
           <button onClick={openAdd} className="btn-primary"><RiAddLine size={18} /> Add New Listing</button>
         </div>
 
         {/* Search */}
         <div className="card" style={{ padding: 14, marginBottom: 20 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#f8fafc', border: '1.5px solid #e2e8f0', borderRadius: 8, padding: '9px 14px' }}>
-            <RiSearchLine size={16} color='#94a3b8' />
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search jobs..." style={{ border: 'none', outline: 'none', background: 'transparent', fontSize: '0.875rem', color: '#334155', width: '100%' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--gray-50)', border: '1.5px solid var(--gray-100)', borderRadius: 8, padding: '9px 14px', transition: 'all 0.3s ease' }}>
+            <RiSearchLine size={16} color='var(--gray-400)' />
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search jobs..." style={{ border: 'none', outline: 'none', background: 'transparent', fontSize: '0.875rem', color: 'var(--gray-800)', width: '100%' }} />
           </div>
         </div>
 
@@ -87,23 +92,23 @@ export default function JobsAdmin() {
             {jobs.map(job => (
               <div key={job.id} className="card" style={{ padding: 20 }}>
                 <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
-                  <img src={job.companyLogo} alt="" style={{ width: 46, height: 46, borderRadius: 10, border: '1px solid #e2e8f0' }} />
+                  <img src={job.companyLogo} alt="" style={{ width: 46, height: 46, borderRadius: 10, border: '1px solid var(--gray-100)' }} />
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: '#0d1f3c' }}>{job.title}</div>
-                    <div style={{ fontSize: '0.78rem', color: '#64748b' }}>{job.company}</div>
+                    <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--navy)' }}>{job.title}</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--gray-500)' }}>{job.company}</div>
                   </div>
-                  <span style={{ padding: '3px 10px', borderRadius: 20, background: 'rgba(52,152,219,.1)', color: '#1a6ea8', fontSize: '0.72rem', fontWeight: 600, height: 'fit-content' }}>{job.type}</span>
+                  <span style={{ padding: '3px 10px', borderRadius: 20, background: 'rgba(52,152,219,.15)', color: '#1a6ea8', fontSize: '0.72rem', fontWeight: 600, height: 'fit-content' }}>{job.type}</span>
                 </div>
                 <div style={{ display: 'flex', gap: 16, marginBottom: 12 }}>
-                  <span style={{ display: 'flex', gap: 4, alignItems: 'center', fontSize: '0.8rem', color: '#64748b' }}><FiMapPin size={12} color='#f5a623' />{job.location}</span>
-                  <span style={{ display: 'flex', gap: 4, alignItems: 'center', fontSize: '0.8rem', color: '#64748b' }}><FiDollarSign size={12} color='#27ae60' />{job.salary}</span>
+                  <span style={{ display: 'flex', gap: 4, alignItems: 'center', fontSize: '0.8rem', color: 'var(--gray-500)' }}><FiMapPin size={12} color='#f5a623' />{job.location}</span>
+                  <span style={{ display: 'flex', gap: 4, alignItems: 'center', fontSize: '0.8rem', color: 'var(--gray-500)' }}><FiDollarSign size={12} color='#27ae60' />{job.salary}</span>
                 </div>
                 {job.skills?.length > 0 && (
                   <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', marginBottom: 14 }}>
-                    {job.skills.slice(0, 3).map(s => <span key={s} style={{ padding: '2px 8px', borderRadius: 20, background: '#f0f4f8', color: '#475569', fontSize: '0.7rem', fontWeight: 500 }}>{s}</span>)}
+                    {job.skills.slice(0, 3).map(s => <span key={s} style={{ padding: '2px 8px', borderRadius: 20, background: 'var(--gray-50)', color: 'var(--gray-600)', fontSize: '0.7rem', fontWeight: 500, border: '1px solid var(--gray-100)' }}>{s}</span>)}
                   </div>
                 )}
-                <div style={{ display: 'flex', gap: 8, borderTop: '1px solid #f0f4f8', paddingTop: 14, marginTop: 2 }}>
+                <div style={{ display: 'flex', gap: 8, borderTop: '1px solid var(--gray-100)', paddingTop: 14, marginTop: 2 }}>
                   <button onClick={() => openEdit(job)} className="btn-outline" style={{ flex: 1, justifyContent: 'center', fontSize: '0.8rem', padding: '8px' }}>
                     <RiEditLine size={14} /> Edit
                   </button>
@@ -120,42 +125,42 @@ export default function JobsAdmin() {
       {/* Add/Edit Modal */}
       {modal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.5)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }} onClick={() => setModal(null)}>
-          <div style={{ background: '#fff', borderRadius: 16, padding: 28, width: '100%', maxWidth: 500, maxHeight: '90vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
-            <h3 style={{ fontWeight: 800, fontSize: '1.15rem', color: '#0d1f3c', marginBottom: 20 }}>{modal === 'add' ? '+ Add New Job Listing' : 'Edit Job Listing'}</h3>
+          <div style={{ background: 'var(--white)', borderRadius: 16, padding: 28, width: '100%', maxWidth: 500, maxHeight: '90vh', overflowY: 'auto', border: '1px solid var(--gray-100)' }} onClick={e => e.stopPropagation()}>
+            <h3 style={{ fontWeight: 800, fontSize: '1.15rem', color: 'var(--navy)', marginBottom: 20 }}>{modal === 'add' ? '+ Add New Job Listing' : 'Edit Job Listing'}</h3>
             <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
                 {[['Job Title', 'title', true], ['Company', 'company', true], ['Location', 'location', true], ['Salary', 'salary', false]].map(([label, key, req]) => (
                   <div key={key}>
-                    <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 5 }}>{label}</label>
+                    <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--gray-500)', display: 'block', marginBottom: 5 }}>{label}</label>
                     <input required={req} value={form[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))} style={inputStyle}
                       onFocus={e => e.target.style.borderColor = '#f5a623'}
-                      onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                      onBlur={e => e.target.style.borderColor = 'var(--gray-100)'}
                     />
                   </div>
                 ))}
               </div>
               <div>
-                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 5 }}>Job Type</label>
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--gray-500)', display: 'block', marginBottom: 5 }}>Job Type</label>
                 <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))} style={inputStyle}>
                   {['Full Time', 'Part Time', 'Contract'].map(t => <option key={t}>{t}</option>)}
                 </select>
               </div>
               <div>
-                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 5 }}>Description</label>
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--gray-500)', display: 'block', marginBottom: 5 }}>Description</label>
                 <textarea value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={3} style={{ ...inputStyle, resize: 'vertical' }} />
               </div>
               <div>
-                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 5 }}>Skills (comma-separated)</label>
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--gray-500)', display: 'block', marginBottom: 5 }}>Skills (comma-separated)</label>
                 <input value={form.skills} onChange={e => setForm(f => ({ ...f, skills: e.target.value }))} placeholder="e.g. JavaScript, React, AWS" style={inputStyle}
                   onFocus={e => e.target.style.borderColor = '#f5a623'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onBlur={e => e.target.style.borderColor = 'var(--gray-100)'}
                 />
               </div>
               <div>
-                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 5 }}>Visa Types (comma-separated)</label>
+                <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--gray-500)', display: 'block', marginBottom: 5 }}>Visa Types (comma-separated)</label>
                 <input value={form.visaTypes} onChange={e => setForm(f => ({ ...f, visaTypes: e.target.value }))} placeholder="e.g. 482, 186, 189" style={inputStyle}
                   onFocus={e => e.target.style.borderColor = '#f5a623'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onBlur={e => e.target.style.borderColor = 'var(--gray-100)'}
                 />
               </div>
               <div style={{ display: 'flex', gap: 10, marginTop: 6 }}>

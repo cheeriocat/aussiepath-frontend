@@ -6,6 +6,7 @@ export default function Header({ title = 'Migration Hub', subtitle = '31 Lakesid
   const { user } = useAuth();
   const [notifOpen, setNotifOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [searchFocused, setSearchFocused] = useState(false);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -48,18 +49,20 @@ export default function Header({ title = 'Migration Hub', subtitle = '31 Lakesid
       {/* Search */}
       <div style={{
         display: 'flex', alignItems: 'center', gap: 10,
-        background: 'var(--gray-50)', border: '1.5px solid var(--gray-100)',
-        borderRadius: 10, padding: '9px 16px', width: 260,
-        transition: 'border-color .2s',
-      }}
-        onFocusCapture={e => e.currentTarget.style.borderColor = '#f5a623'}
-        onBlurCapture={e => e.currentTarget.style.borderColor = 'var(--gray-100)'}
-      >
+        background: 'var(--gray-50)', border: searchFocused ? '1.5px solid #f5a623' : '1.5px solid var(--gray-100)',
+        borderRadius: 10, padding: '9px 16px', width: searchFocused ? 380 : 260,
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+      }}>
         <FiSearch size={15} color='var(--gray-400)' />
-        <input placeholder="Search applicants..." style={{
-          background: 'transparent', border: 'none', outline: 'none',
-          fontSize: '0.85rem', color: 'var(--gray-700)', width: '100%',
-        }} />
+        <input
+          placeholder="Search applicants..."
+          onFocus={() => setSearchFocused(true)}
+          onBlur={() => setSearchFocused(false)}
+          style={{
+            background: 'transparent', border: 'none', outline: 'none',
+            fontSize: '0.85rem', color: 'var(--gray-700)', width: '100%',
+          }}
+        />
       </div>
 
       {/* Theme Toggle */}

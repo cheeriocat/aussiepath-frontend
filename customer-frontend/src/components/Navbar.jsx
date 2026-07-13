@@ -8,6 +8,7 @@ export default function Navbar() {
   const { user, logout, isAdmin } = useAuth();
   const location = useLocation();
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [searchFocused, setSearchFocused] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -89,14 +90,20 @@ export default function Navbar() {
           {/* Search */}
           <div style={{
             display: 'flex', alignItems: 'center', gap: 8,
-            background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.12)',
-            borderRadius: 8, padding: '8px 14px', width: 200,
+            background: 'rgba(255,255,255,.08)', border: searchFocused ? '1px solid #f5a623' : '1px solid rgba(255,255,255,.12)',
+            borderRadius: 8, padding: '8px 14px', width: searchFocused ? 320 : 200,
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           }}>
             <FiSearch size={15} color='rgba(255,255,255,.5)' />
-            <input placeholder="Search..." style={{
-              background: 'transparent', border: 'none', color: 'rgba(255,255,255,.85)',
-              fontSize: '0.85rem', outline: 'none', width: '100%',
-            }} />
+            <input
+              placeholder="Search..."
+              onFocus={() => setSearchFocused(true)}
+              onBlur={() => setSearchFocused(false)}
+              style={{
+                background: 'transparent', border: 'none', color: 'rgba(255,255,255,.85)',
+                fontSize: '0.85rem', outline: 'none', width: '100%',
+              }}
+            />
           </div>
 
           {/* Icons */}

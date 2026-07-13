@@ -90,7 +90,10 @@ export default function Home() {
               <Link to="/eligibility" className="btn-primary" style={{ padding: '14px 28px', fontSize: '0.95rem' }}>
                 Apply Now <FiArrowRight size={16} />
               </Link>
-              <Link to="/jobs" className="btn-outline" style={{ padding: '14px 28px', fontSize: '0.95rem' }}>
+              <Link to="/jobs" style={{ padding: '14px 28px', fontSize: '0.95rem', border: '1.5px solid #fff', color: '#fff', background: 'transparent', borderRadius: '8px', fontWeight: 600, display: 'inline-flex', alignItems: 'center', transition: 'all 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
+              >
                 View Opportunities
               </Link>
             </div>
