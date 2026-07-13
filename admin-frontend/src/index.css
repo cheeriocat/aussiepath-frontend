@@ -124,3 +124,83 @@ ul { list-style: none; }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 .animate-fadeInUp { animation: fadeInUp .5s ease both; }
 .animate-fadeIn { animation: fadeIn .4s ease both; }
+
+/* ─── Mobile Responsiveness Media Queries ───────────────────────────────────── */
+@media (max-width: 991px) {
+  /* Hide sidebar off-screen by default */
+  aside {
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  /* Show close button in sidebar */
+  .sidebar-close-btn {
+    display: block !important;
+  }
+
+  /* Slide in sidebar when open class is applied to body */
+  body.sidebar-open aside {
+    transform: translateX(0) !important;
+  }
+
+  /* Shift main content to full width */
+  .admin-content {
+    margin-left: 0 !important;
+  }
+
+  /* Show hamburger menu toggle in Header */
+  .admin-menu-toggle {
+    display: flex !important;
+  }
+
+  /* Add transparent blur backdrop overlay when sidebar is open */
+  body.sidebar-open::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 90;
+    animation: fadeIn 0.3s ease both;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-main {
+    padding: 20px 16px;
+  }
+
+  /* Hide search bar on Header to preserve space on very small screens */
+  .admin-search-container {
+    display: none !important;
+  }
+  .admin-profile-chevron {
+    display: none !important;
+  }
+  .admin-profile-info {
+    display: none !important;
+  }
+  .admin-profile-container {
+    padding: 0 !important;
+  }
+
+  /* Table horizontal scrolling */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Grid layout overrides */
+  div[style*="gridTemplateColumns"],
+  [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Flex wrap properties */
+  div[style*="display: 'flex'"],
+  [style*="display: 'flex'"] {
+    flex-wrap: wrap;
+  }
+}
+

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiSearch, FiBell, FiMapPin, FiChevronDown, FiSun, FiMoon } from 'react-icons/fi';
+import { FiSearch, FiBell, FiMapPin, FiChevronDown, FiSun, FiMoon, FiMenu } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 
 export default function Header({ title = 'Migration Hub', subtitle = '31 Lakeside, Victoria' }) {
@@ -38,6 +38,15 @@ export default function Header({ title = 'Migration Hub', subtitle = '31 Lakesid
       boxShadow: '0 1px 6px rgba(0,0,0,.06)',
       transition: 'all 0.3s ease',
     }}>
+      {/* Mobile Hamburger Menu Trigger */}
+      <button className="admin-menu-toggle" onClick={() => document.body.classList.toggle('sidebar-open')} style={{
+        background: 'var(--gray-50)', border: '1.5px solid var(--gray-100)',
+        borderRadius: 8, width: 36, height: 36, display: 'none', alignItems: 'center', justifyContent: 'center',
+        color: 'var(--gray-600)', cursor: 'pointer', flexShrink: 0
+      }}>
+        <FiMenu size={18} />
+      </button>
+
       {/* Title */}
       <div style={{ flex: 1 }}>
         <h1 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--navy)', lineHeight: 1 }}>{title}</h1>
@@ -47,7 +56,7 @@ export default function Header({ title = 'Migration Hub', subtitle = '31 Lakesid
       </div>
 
       {/* Search */}
-      <div style={{
+      <div className="admin-search-container" style={{
         display: 'flex', alignItems: 'center', gap: 10,
         background: 'var(--gray-50)', border: searchFocused ? '1.5px solid #f5a623' : '1.5px solid var(--gray-100)',
         borderRadius: 10, padding: '9px 16px', width: searchFocused ? 380 : 260,
@@ -79,7 +88,7 @@ export default function Header({ title = 'Migration Hub', subtitle = '31 Lakesid
       </button>
 
       {/* Notifications */}
-      <div style={{ position: 'relative' }}>
+      <div className="admin-notifs-container" style={{ position: 'relative' }}>
         <button onClick={() => setNotifOpen(o => !o)} style={{
           position: 'relative', width: 38, height: 38, borderRadius: 10,
           background: 'var(--gray-50)', border: '1.5px solid var(--gray-100)',
@@ -131,7 +140,7 @@ export default function Header({ title = 'Migration Hub', subtitle = '31 Lakesid
       </div>
 
       {/* User Profile */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '6px 10px', borderRadius: 10, transition: 'background .2s' }}
+      <div className="admin-profile-container" style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '6px 10px', borderRadius: 10, transition: 'background .2s' }}
         onMouseEnter={e => e.currentTarget.style.background = 'var(--gray-50)'}
         onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
       >
@@ -140,11 +149,11 @@ export default function Header({ title = 'Migration Hub', subtitle = '31 Lakesid
           alt="avatar"
           style={{ width: 34, height: 34, borderRadius: '50%', border: '2px solid #f5a623', background: '#e2e8f0' }}
         />
-        <div>
+        <div className="admin-profile-info">
           <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--gray-800)' }}>{user?.name || 'Admin User'}</div>
           <div style={{ fontSize: '0.68rem', color: 'var(--gray-500)' }}>{user?.role || 'Administrator'}</div>
         </div>
-        <FiChevronDown size={14} color='var(--gray-400)' />
+        <FiChevronDown size={14} color='var(--gray-400)' className="admin-profile-chevron" />
       </div>
     </header>
   );

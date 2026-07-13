@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { RiDashboardLine, RiFileList3Line, RiFolderLine, RiBriefcaseLine, RiSettingsLine, RiAddLine, RiLogoutBoxLine } from 'react-icons/ri';
+import { FiX } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 
 const navItems = [
@@ -14,8 +15,14 @@ const navItems = [
 export default function Sidebar() {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => { logout(); navigate('/login'); };
+
+  // Close sidebar on mobile when path changes
+  React.useEffect(() => {
+    document.body.classList.remove('sidebar-open');
+  }, [location.pathname]);
 
   return (
     <aside style={{
@@ -27,17 +34,27 @@ export default function Sidebar() {
     }}>
       {/* Logo */}
       <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{
-            width: 36, height: 36, borderRadius: 10,
-            background: 'linear-gradient(135deg,#f5a623,#e0941a)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontWeight: 900, fontSize: 18, color: '#0d1f3c',
-          }}>A</div>
-          <div>
-            <div style={{ color: '#fff', fontWeight: 800, fontSize: '0.95rem', lineHeight: 1 }}>AussiePath</div>
-            <div style={{ color: 'rgba(255,255,255,.4)', fontSize: '0.68rem', marginTop: 2 }}>Admin Console</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{
+              width: 36, height: 36, borderRadius: 10,
+              background: 'linear-gradient(135deg,#f5a623,#e0941a)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontWeight: 900, fontSize: 18, color: '#0d1f3c',
+            }}>A</div>
+            <div>
+              <div style={{ color: '#fff', fontWeight: 800, fontSize: '0.95rem', lineHeight: 1 }}>AussiePath</div>
+              <div style={{ color: 'rgba(255,255,255,.4)', fontSize: '0.68rem', marginTop: 2 }}>Admin Console</div>
+            </div>
           </div>
+
+          {/* Close button for mobile drawer */}
+          <button className="sidebar-close-btn" onClick={() => document.body.classList.remove('sidebar-open')} style={{
+            background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)',
+            cursor: 'pointer', display: 'none', padding: 4
+          }}>
+            <FiX size={18} />
+          </button>
         </div>
       </div>
 
@@ -69,7 +86,8 @@ export default function Sidebar() {
           width: '100%', background: '#f5a623', color: '#0d1f3c',
           padding: '11px', borderRadius: 10, fontWeight: 700, fontSize: '0.85rem',
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-          marginBottom: 8, transition: 'all .2s',
+          marginBottom: 8, transition: 'all .2s', border: 'none', outline: 'none',
+          cursor: 'pointer'
         }}
           onMouseEnter={e => e.currentTarget.style.background = '#e0941a'}
           onMouseLeave={e => e.currentTarget.style.background = '#f5a623'}
@@ -82,7 +100,7 @@ export default function Sidebar() {
           width: '100%', background: 'rgba(255,255,255,.06)', color: 'rgba(255,255,255,.55)',
           padding: '10px', borderRadius: 10, fontSize: '0.82rem', fontWeight: 500,
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-          transition: 'all .2s',
+          transition: 'all .2s', border: 'none', outline: 'none', cursor: 'pointer'
         }}
           onMouseEnter={e => { e.currentTarget.style.background = 'rgba(231,76,60,.15)'; e.currentTarget.style.color = '#e74c3c'; }}
           onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,.06)'; e.currentTarget.style.color = 'rgba(255,255,255,.55)'; }}

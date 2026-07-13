@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FiSearch, FiBell, FiUser, FiSun, FiMoon } from 'react-icons/fi';
+import { FiSearch, FiBell, FiUser, FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
@@ -9,6 +9,7 @@ export default function Navbar() {
   const location = useLocation();
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [searchFocused, setSearchFocused] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -25,6 +26,11 @@ export default function Navbar() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
@@ -40,7 +46,7 @@ export default function Navbar() {
       transition: 'all .3s ease',
       borderBottom: '1px solid rgba(255,255,255,.08)',
     }}>
-      <div className="container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 24 }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 24, justifyContent: 'space-between' }}>
         {/* Logo */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
           <div style={{
@@ -55,7 +61,7 @@ export default function Navbar() {
         </Link>
 
         {/* Nav Links */}
-        <div style={{ display: 'flex', gap: 4, flex: 1 }}>
+        <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
           {[
             ['/', 'Home'],
             ['/jobs', 'Jobs'],
@@ -74,6 +80,8 @@ export default function Navbar() {
                 borderRadius: 6,
                 transition: 'all .2s',
                 background: isActive(href) ? 'rgba(245,166,35,.1)' : 'transparent',
+                width: menuOpen ? '100%' : 'auto',
+                display: 'block'
               }}
                 onMouseEnter={e => { e.currentTarget.style.color = '#f5a623'; e.currentTarget.style.background = 'rgba(245,166,35,.08)'; }}
                 onMouseLeave={e => {
@@ -88,7 +96,7 @@ export default function Navbar() {
         {/* Right Section */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           {/* Search */}
-          <div style={{
+          <div className="nav-search-container" style={{
             display: 'flex', alignItems: 'center', gap: 8,
             background: 'rgba(255,255,255,.08)', border: searchFocused ? '1px solid #f5a623' : '1px solid rgba(255,255,255,.12)',
             borderRadius: 8, padding: '8px 14px', width: searchFocused ? 320 : 200,
@@ -106,18 +114,20 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Icons */}
-          {[FiBell, FiUser].map((Icon, i) => (
-            <button key={i} style={{
-              width: 36, height: 36, borderRadius: 8, background: 'rgba(255,255,255,.08)',
-              border: '1px solid rgba(255,255,255,.1)', color: 'rgba(255,255,255,.7)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              transition: 'all .2s',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,166,35,.15)'; e.currentTarget.style.color = '#f5a623'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,.08)'; e.currentTarget.style.color = 'rgba(255,255,255,.7)'; }}
-            ><Icon size={16} /></button>
-          ))}
+          {/* Icons (Hidden on small mobile screens to prevent clutter) */}
+          <div className="nav-icons-desktop" style={{ display: 'flex', gap: 8 }}>
+            {[FiBell, FiUser].map((Icon, i) => (
+              <button key={i} style={{
+                width: 36, height: 36, borderRadius: 8, background: 'rgba(255,255,255,.08)',
+                border: '1px solid rgba(255,255,255,.1)', color: 'rgba(255,255,255,.7)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                transition: 'all .2s',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,166,35,.15)'; e.currentTarget.style.color = '#f5a623'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,.08)'; e.currentTarget.style.color = 'rgba(255,255,255,.7)'; }}
+              ><Icon size={16} /></button>
+            ))}
+          </div>
 
           {/* Theme Toggle */}
           <button onClick={toggleTheme} style={{
@@ -135,11 +145,12 @@ export default function Navbar() {
           {/* Sign In / Out */}
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 600 }}>{user.name}</span>
+              <span className="nav-username" style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 600 }}>{user.name}</span>
               <button onClick={logout} style={{
                 background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)',
                 color: '#fff', padding: '8px 16px', borderRadius: 8,
                 fontWeight: 600, fontSize: '0.8rem', transition: 'all .2s',
+                cursor: 'pointer'
               }}
                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(231,76,60,0.15)'; e.currentTarget.style.color = '#e74c3c'; e.currentTarget.style.borderColor = '#e74c3c'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
@@ -154,6 +165,16 @@ export default function Navbar() {
               onMouseLeave={e => { e.currentTarget.style.background = '#f5a623'; e.currentTarget.style.transform = 'translateY(0)'; }}
             >Login / Sign In</Link>
           )}
+
+          {/* Mobile Menu Toggle Button */}
+          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} style={{
+            width: 36, height: 36, borderRadius: 8, background: 'rgba(255,255,255,.08)',
+            border: '1px solid rgba(255,255,255,.1)', color: '#fff',
+            display: 'none', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer'
+          }}>
+            {menuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
+          </button>
         </div>
       </div>
     </nav>

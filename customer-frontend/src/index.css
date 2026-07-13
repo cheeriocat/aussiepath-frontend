@@ -113,3 +113,102 @@ ul { list-style: none; }
 @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.6; } }
 .animate-fadeInUp { animation: fadeInUp .7s ease both; }
 .animate-fadeIn { animation: fadeIn .5s ease both; }
+
+/* ─── Mobile Responsiveness Media Queries ───────────────────────────────────── */
+@media (max-width: 991px) {
+  /* Hero text scaling */
+  h1.animate-fadeInUp[style*="fontSize: '3.4rem'"],
+  h1[style*="fontSize: '3.4rem'"],
+  h1 {
+    font-size: 2.2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Navbar collapsing drawer */
+  .menu-toggle {
+    display: flex !important;
+  }
+  .nav-links {
+    display: none !important;
+  }
+  .nav-links.open {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: rgba(13,31,60,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid rgba(255,255,255,0.08);
+    padding: 20px;
+    gap: 12px;
+    align-items: flex-start;
+    z-index: 999;
+  }
+  .nav-search-container {
+    display: none !important; /* Hide search input on mobile navbar to save space */
+  }
+  .nav-icons-desktop {
+    display: none !important;
+  }
+  .nav-username {
+    display: none !important;
+  }
+
+  /* Grid layout overrides */
+  div[style*="gridTemplateColumns"],
+  [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Horizontal flex elements wrap and stack */
+  div[style*="display: 'flex'"],
+  [style*="display: 'flex'"] {
+    flex-wrap: wrap;
+  }
+  
+  /* Hero flex buttons container */
+  .hero-buttons-container,
+  div[style*="flexWrap: 'wrap'"] {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  div[style*="flexWrap: 'wrap'"] a,
+  div[style*="flexWrap: 'wrap'"] button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Section layouts stacking */
+  div[style*="flexDirection: 'row'"],
+  [style*="flexDirection: 'row'"] {
+    flex-direction: column !important;
+  }
+
+  /* Stats stacking */
+  div[style*="gap: 24"] {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Footer column stacking */
+  footer div[style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    text-align: center;
+  }
+  footer div[style*="justifyContent: 'space-between'"] {
+    flex-direction: column !important;
+    gap: 16px;
+    align-items: center !important;
+  }
+
+  /* General paddings */
+  .container {
+    padding: 0 16px;
+  }
+}
+
