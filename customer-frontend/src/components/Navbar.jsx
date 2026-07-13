@@ -1,0 +1,154 @@
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { FiSearch, FiBell, FiUser, FiSun, FiMoon } from 'react-icons/fi';
+import { useAuth } from '../context/AuthContext';
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const { user, logout, isAdmin } = useAuth();
+  const location = useLocation();
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  const isActive = path => location.pathname === path;
+
+  return (
+    <nav style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+      background: scrolled ? 'rgba(13,31,60,.98)' : 'rgba(13,31,60,.92)',
+      backdropFilter: 'blur(12px)',
+      boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,.3)' : 'none',
+      transition: 'all .3s ease',
+      borderBottom: '1px solid rgba(255,255,255,.08)',
+    }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 24 }}>
+        {/* Logo */}
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+          <div style={{
+            width: 34, height: 34, borderRadius: 8,
+            background: 'linear-gradient(135deg,#f5a623,#e0941a)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 18, fontWeight: 900, color: '#0d1f3c',
+          }}>A</div>
+          <span style={{ color: '#fff', fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-.3px' }}>
+            AussiePath
+          </span>
+        </Link>
+
+        {/* Nav Links */}
+        <div style={{ display: 'flex', gap: 4, flex: 1 }}>
+          {[
+            ['/', 'Home'],
+            ['/jobs', 'Jobs'],
+            ['/eligibility', 'Eligibility'],
+            ...(isAdmin ? [['http://localhost:3001/dashboard', 'Admin Panel']] : []),
+          ].map(([href, label]) => {
+            const external = href.startsWith('http');
+            const Tag = external ? 'a' : Link;
+            const props = external ? { href, target: '_blank', rel: 'noopener noreferrer' } : { to: href };
+            return (
+              <Tag key={label} {...props} style={{
+                color: isActive(href) ? '#f5a623' : 'rgba(255,255,255,.85)',
+                fontWeight: isActive(href) ? 700 : 500,
+                fontSize: '0.9rem',
+                padding: '8px 14px',
+                borderRadius: 6,
+                transition: 'all .2s',
+                background: isActive(href) ? 'rgba(245,166,35,.1)' : 'transparent',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#f5a623'; e.currentTarget.style.background = 'rgba(245,166,35,.08)'; }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.color = isActive(href) ? '#f5a623' : 'rgba(255,255,255,.85)';
+                  e.currentTarget.style.background = isActive(href) ? 'rgba(245,166,35,.1)' : 'transparent';
+                }}
+              >{label}</Tag>
+            );
+          })}
+        </div>
+
+        {/* Right Section */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {/* Search */}
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.12)',
+            borderRadius: 8, padding: '8px 14px', width: 200,
+          }}>
+            <FiSearch size={15} color='rgba(255,255,255,.5)' />
+            <input placeholder="Search..." style={{
+              background: 'transparent', border: 'none', color: 'rgba(255,255,255,.85)',
+              fontSize: '0.85rem', outline: 'none', width: '100%',
+            }} />
+          </div>
+
+          {/* Icons */}
+          {[FiBell, FiUser].map((Icon, i) => (
+            <button key={i} style={{
+              width: 36, height: 36, borderRadius: 8, background: 'rgba(255,255,255,.08)',
+              border: '1px solid rgba(255,255,255,.1)', color: 'rgba(255,255,255,.7)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              transition: 'all .2s',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,166,35,.15)'; e.currentTarget.style.color = '#f5a623'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,.08)'; e.currentTarget.style.color = 'rgba(255,255,255,.7)'; }}
+            ><Icon size={16} /></button>
+          ))}
+
+          {/* Theme Toggle */}
+          <button onClick={toggleTheme} style={{
+            width: 36, height: 36, borderRadius: 8, background: 'rgba(255,255,255,.08)',
+            border: '1px solid rgba(255,255,255,.1)', color: 'rgba(255,255,255,.7)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'all .2s',
+          }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,166,35,.15)'; e.currentTarget.style.color = '#f5a623'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,.08)'; e.currentTarget.style.color = 'rgba(255,255,255,.7)'; }}
+          >
+            {theme === 'light' ? <FiMoon size={16} /> : <FiSun size={16} />}
+          </button>
+
+          {/* Sign In / Out */}
+          {user ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 600 }}>{user.name}</span>
+              <button onClick={logout} style={{
+                background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)',
+                color: '#fff', padding: '8px 16px', borderRadius: 8,
+                fontWeight: 600, fontSize: '0.8rem', transition: 'all .2s',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(231,76,60,0.15)'; e.currentTarget.style.color = '#e74c3c'; e.currentTarget.style.borderColor = '#e74c3c'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
+              >Log Out</button>
+            </div>
+          ) : (
+            <Link to="/login" style={{
+              background: 'var(--gold)', color: '#0d1f3c', padding: '9px 20px', borderRadius: 8,
+              fontWeight: 700, fontSize: '0.85rem', transition: 'all .2s',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#e0941a'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = '#f5a623'; e.currentTarget.style.transform = 'translateY(0)'; }}
+            >Sign In</Link>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+}
