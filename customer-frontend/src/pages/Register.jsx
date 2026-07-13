@@ -21,7 +21,6 @@ export default function Register() {
     setLoading(true);
     setError('');
     try {
-      // Create user
       const { data } = await axios.post('/api/auth/register', {
         name: form.name,
         email: form.email,
@@ -29,7 +28,6 @@ export default function Register() {
       });
 
       if (data.success) {
-        // Automatically login
         await login(form.email, form.password);
         navigate('/');
       } else {
@@ -46,12 +44,12 @@ export default function Register() {
     width: '100%',
     padding: '12px 14px 12px 42px',
     borderRadius: 8,
-    border: '1.5px solid #e2e8f0',
+    border: '1.5px solid var(--gray-100)',
     fontSize: '0.9rem',
-    color: '#334155',
+    color: 'var(--gray-800)',
     outline: 'none',
-    transition: 'border-color .2s',
-    background: '#f8fafc',
+    transition: 'all 0.2s',
+    background: 'var(--gray-50)',
   };
 
   return (
@@ -60,11 +58,11 @@ export default function Register() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'linear-gradient(135deg, #0d1f3c 0%, #1a2d5a 100%)',
-      padding: '80px 24px 40px',
+      background: 'var(--off-white)',
+      padding: '100px 24px 60px',
     }}>
       <div className="animate-fadeInUp" style={{ width: '100%', maxWidth: 440 }}>
-        <div style={{ background: '#fff', borderRadius: 20, padding: 36, boxShadow: '0 12px 40px rgba(0,0,0,0.25)' }}>
+        <div style={{ background: 'var(--white)', borderRadius: 20, padding: 36, boxShadow: 'var(--shadow)', border: '1px solid var(--gray-100)', transition: 'all 0.3s ease' }}>
           {/* Logo / Header */}
           <div style={{ textAlign: 'center', marginBottom: 28 }}>
             <div style={{
@@ -74,24 +72,24 @@ export default function Register() {
               fontWeight: 900, fontSize: 22, color: '#0d1f3c',
               margin: '0 auto 12px',
             }}>A</div>
-            <h2 style={{ fontWeight: 800, fontSize: '1.4rem', color: '#0d1f3c', marginBottom: 4 }}>Create Account</h2>
-            <p style={{ color: '#64748b', fontSize: '0.85rem' }}>Join AussiePath to check visa status and jobs</p>
+            <h2 style={{ fontWeight: 800, fontSize: '1.4rem', color: 'var(--navy)', marginBottom: 4 }}>Create Account</h2>
+            <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem' }}>Join AussiePath to check visa status and jobs</p>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {/* Full Name */}
             <div>
-              <label style={{ fontSize: '0.82rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 6 }}>Full Name</label>
+              <label style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--gray-600)', display: 'block', marginBottom: 6 }}>Full Name</label>
               <div style={{ position: 'relative' }}>
-                <FiUser size={16} color='#94a3b8' style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+                <FiUser size={16} color='var(--gray-400)' style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                 <input
                   type="text"
                   value={form.name}
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                   style={inputStyle}
                   onFocus={e => e.target.style.borderColor = '#f5a623'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onBlur={e => e.target.style.borderColor = 'var(--gray-100)'}
                   placeholder="John Doe"
                   required
                 />
@@ -100,16 +98,16 @@ export default function Register() {
 
             {/* Email */}
             <div>
-              <label style={{ fontSize: '0.82rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 6 }}>Email Address</label>
+              <label style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--gray-600)', display: 'block', marginBottom: 6 }}>Email Address</label>
               <div style={{ position: 'relative' }}>
-                <FiMail size={16} color='#94a3b8' style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+                <FiMail size={16} color='var(--gray-400)' style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                 <input
                   type="email"
                   value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                   style={inputStyle}
                   onFocus={e => e.target.style.borderColor = '#f5a623'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onBlur={e => e.target.style.borderColor = 'var(--gray-100)'}
                   placeholder="john.doe@example.com"
                   required
                 />
@@ -118,20 +116,20 @@ export default function Register() {
 
             {/* Password */}
             <div>
-              <label style={{ fontSize: '0.82rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 6 }}>Password</label>
+              <label style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--gray-600)', display: 'block', marginBottom: 6 }}>Password</label>
               <div style={{ position: 'relative' }}>
-                <FiLock size={16} color='#94a3b8' style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+                <FiLock size={16} color='var(--gray-400)' style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                 <input
                   type={showPw ? 'text' : 'password'}
                   value={form.password}
                   onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
                   style={{ ...inputStyle, paddingRight: 44 }}
                   onFocus={e => e.target.style.borderColor = '#f5a623'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onBlur={e => e.target.style.borderColor = 'var(--gray-100)'}
                   placeholder="••••••••"
                   required
                 />
-                <button type="button" onClick={() => setShowPw(s => !s)} style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: 0 }}>
+                <button type="button" onClick={() => setShowPw(s => !s)} style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'var(--gray-400)', cursor: 'pointer', padding: 0 }}>
                   {showPw ? <FiEyeOff size={16} /> : <FiEye size={16} />}
                 </button>
               </div>
@@ -139,16 +137,16 @@ export default function Register() {
 
             {/* Confirm Password */}
             <div>
-              <label style={{ fontSize: '0.82rem', fontWeight: 600, color: '#64748b', display: 'block', marginBottom: 6 }}>Confirm Password</label>
+              <label style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--gray-600)', display: 'block', marginBottom: 6 }}>Confirm Password</label>
               <div style={{ position: 'relative' }}>
-                <FiLock size={16} color='#94a3b8' style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+                <FiLock size={16} color='var(--gray-400)' style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                 <input
                   type={showPw ? 'text' : 'password'}
                   value={form.confirmPassword}
                   onChange={e => setForm(f => ({ ...f, confirmPassword: e.target.value }))}
                   style={{ ...inputStyle, paddingRight: 44 }}
                   onFocus={e => e.target.style.borderColor = '#f5a623'}
-                  onBlur={e => e.target.style.borderColor = '#e2e8f0'}
+                  onBlur={e => e.target.style.borderColor = 'var(--gray-100)'}
                   placeholder="••••••••"
                   required
                 />
@@ -158,9 +156,9 @@ export default function Register() {
             {error && (
               <div style={{
                 display: 'flex', gap: 8, alignItems: 'center',
-                padding: '10px 14px', background: '#fef2f2',
-                border: '1px solid #fecaca', borderRadius: 8,
-                color: '#dc2626', fontSize: '0.82rem',
+                padding: '10px 14px', background: 'rgba(231,76,60,0.1)',
+                border: '1px solid rgba(231,76,60,0.2)', borderRadius: 8,
+                color: '#e74c3c', fontSize: '0.82rem',
               }}>
                 <FiAlertCircle size={16} style={{ flexShrink: 0 }} />
                 <span>{error}</span>
@@ -172,12 +170,13 @@ export default function Register() {
               padding: '13px', borderRadius: 9, fontWeight: 800, fontSize: '0.95rem',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
               boxShadow: '0 4px 14px rgba(245,166,35,.3)', transition: 'all .2s',
+              cursor: 'pointer', border: 'none', outline: 'none'
             }}>
               {loading ? <><FiLoader size={16} style={{ animation: 'spin 1s linear infinite' }} /> Creating account...</> : 'Register'}
             </button>
           </form>
 
-          <p style={{ textAlign: 'center', marginTop: 24, fontSize: '0.85rem', color: '#64748b' }}>
+          <p style={{ textAlign: 'center', marginTop: 24, fontSize: '0.85rem', color: 'var(--gray-500)' }}>
             Already have an account? <Link to="/login" style={{ color: '#f5a623', fontWeight: 600 }}>Login here</Link>
           </p>
         </div>

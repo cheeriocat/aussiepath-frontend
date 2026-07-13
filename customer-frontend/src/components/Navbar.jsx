@@ -152,7 +152,7 @@ export default function Navbar() {
             }}
               onMouseEnter={e => { e.currentTarget.style.background = '#e0941a'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = '#f5a623'; e.currentTarget.style.transform = 'translateY(0)'; }}
-            >Sign In</Link>
+            >Login / Sign In</Link>
           )}
         </div>
       </div>
