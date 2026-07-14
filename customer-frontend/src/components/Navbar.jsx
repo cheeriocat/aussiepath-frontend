@@ -46,19 +46,22 @@ export default function Navbar() {
       transition: 'all .3s ease',
       borderBottom: '1px solid rgba(255,255,255,.08)',
     }}>
-      <div className="container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 24, justifyContent: 'space-between' }}>
-        {/* Logo */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-          <div style={{
-            width: 34, height: 34, borderRadius: 8,
-            background: 'linear-gradient(135deg,#f5a623,#e0941a)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 18, fontWeight: 900, color: '#0d1f3c',
-          }}>A</div>
-          <span style={{ color: '#fff', fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-.3px' }}>
-            AussiePath
-          </span>
-        </Link>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 16, justifyContent: 'space-between' }}>
+        {/* Left Side: Sri Lanka Flag + Logo */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+          <span title="Sri Lanka" style={{ fontSize: '1.45rem', lineHeight: 1, cursor: 'default', userSelect: 'none', display: 'flex', alignItems: 'center' }}>🇱🇰</span>
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{
+              width: 32, height: 32, borderRadius: 8,
+              background: 'linear-gradient(135deg,#f5a623,#e0941a)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 16, fontWeight: 900, color: '#0d1f3c',
+            }}>A</div>
+            <span className="nav-brand-text" style={{ color: '#fff', fontWeight: 800, fontSize: '1.1rem', letterSpacing: '-.3px' }}>
+              AussiePath
+            </span>
+          </Link>
+        </div>
 
         {/* Nav Links */}
         <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
@@ -114,7 +117,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Section */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
           {/* Search */}
           <div className="nav-search-container" style={{
             display: 'flex', alignItems: 'center', gap: 8,
@@ -197,6 +200,9 @@ export default function Navbar() {
           }}>
             {menuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
           </button>
+
+          {/* Australia Flag */}
+          <span title="Australia" style={{ fontSize: '1.45rem', lineHeight: 1, cursor: 'default', userSelect: 'none', display: 'flex', alignItems: 'center', marginLeft: 4 }}>🇦🇺</span>
         </div>
       </div>
     </nav>

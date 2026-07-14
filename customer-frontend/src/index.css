@@ -342,6 +342,13 @@ ul { list-style: none; }
   .hero-container {
     padding-top: 100px !important;
   }
+
+  /* Responsive Brand text wrapping constraint on tiny viewports */
+  @media (max-width: 400px) {
+    .nav-brand-text {
+      display: none !important;
+    }
+  }
 }
 
 
