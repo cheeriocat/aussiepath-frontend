@@ -91,6 +91,26 @@ export default function Navbar() {
               >{label}</Tag>
             );
           })}
+
+          {/* Mobile Auth Panel */}
+          <div className="nav-auth-mobile" style={{ display: 'none', width: '100%', borderTop: '1px solid rgba(255,255,255,.08)', marginTop: 8, paddingTop: 16 }}>
+            {user ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ color: 'rgba(255,255,255,.6)', fontSize: '0.82rem', padding: '0 14px' }}>Logged in as: <strong style={{ color: '#fff' }}>{user.name}</strong></div>
+                <button onClick={logout} style={{
+                  background: 'rgba(231,76,60,0.15)', border: '1px solid #e74c3c',
+                  color: '#e74c3c', padding: '10px 14px', borderRadius: 8,
+                  fontWeight: 600, fontSize: '0.85rem', width: '100%',
+                  cursor: 'pointer'
+                }}>Log Out</button>
+              </div>
+            ) : (
+              <Link to="/login" style={{
+                background: 'var(--gold)', color: '#0d1f3c', padding: '10px 14px', borderRadius: 8,
+                fontWeight: 700, fontSize: '0.85rem', display: 'block', textAlign: 'center',
+              }}>Login / Sign In</Link>
+            )}
+          </div>
         </div>
 
         {/* Right Section */}
@@ -143,28 +163,30 @@ export default function Navbar() {
           </button>
 
           {/* Sign In / Out */}
-          {user ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span className="nav-username" style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 600 }}>{user.name}</span>
-              <button onClick={logout} style={{
-                background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)',
-                color: '#fff', padding: '8px 16px', borderRadius: 8,
-                fontWeight: 600, fontSize: '0.8rem', transition: 'all .2s',
-                cursor: 'pointer'
+          <div className="nav-auth-desktop" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            {user ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <span className="nav-username" style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 600 }}>{user.name}</span>
+                <button onClick={logout} style={{
+                  background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)',
+                  color: '#fff', padding: '8px 16px', borderRadius: 8,
+                  fontWeight: 600, fontSize: '0.8rem', transition: 'all .2s',
+                  cursor: 'pointer'
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(231,76,60,0.15)'; e.currentTarget.style.color = '#e74c3c'; e.currentTarget.style.borderColor = '#e74c3c'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
+                >Log Out</button>
+              </div>
+            ) : (
+              <Link to="/login" style={{
+                background: 'var(--gold)', color: '#0d1f3c', padding: '9px 20px', borderRadius: 8,
+                fontWeight: 700, fontSize: '0.85rem', transition: 'all .2s',
               }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(231,76,60,0.15)'; e.currentTarget.style.color = '#e74c3c'; e.currentTarget.style.borderColor = '#e74c3c'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
-              >Log Out</button>
-            </div>
-          ) : (
-            <Link to="/login" style={{
-              background: 'var(--gold)', color: '#0d1f3c', padding: '9px 20px', borderRadius: 8,
-              fontWeight: 700, fontSize: '0.85rem', transition: 'all .2s',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#e0941a'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = '#f5a623'; e.currentTarget.style.transform = 'translateY(0)'; }}
-            >Login / Sign In</Link>
-          )}
+                onMouseEnter={e => { e.currentTarget.style.background = '#e0941a'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#f5a623'; e.currentTarget.style.transform = 'translateY(0)'; }}
+              >Login / Sign In</Link>
+            )}
+          </div>
 
           {/* Mobile Menu Toggle Button */}
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} style={{

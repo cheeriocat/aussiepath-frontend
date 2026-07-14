@@ -86,7 +86,7 @@ export default function Home() {
             </p>
 
             {/* Buttons */}
-            <div className="animate-fadeInUp" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48, animationDelay: '.3s' }}>
+            <div className="hero-buttons-container animate-fadeInUp" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48, animationDelay: '.3s' }}>
               <Link to="/eligibility" className="btn-primary" style={{ padding: '14px 28px', fontSize: '0.95rem' }}>
                 Apply Now <FiArrowRight size={16} />
               </Link>

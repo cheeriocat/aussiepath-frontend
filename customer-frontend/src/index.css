@@ -160,51 +160,55 @@ ul { list-style: none; }
   .nav-username {
     display: none !important;
   }
+  .nav-auth-desktop {
+    display: none !important;
+  }
+  .nav-auth-mobile {
+    display: block !important;
+  }
 
-  /* Grid layout overrides */
-  div[style*="gridTemplateColumns"],
-  [style*="gridTemplateColumns"] {
+  /* Grid layout overrides (hyphenated inline style matches) */
+  div[style*="grid-template-columns"],
+  [style*="grid-template-columns"] {
     grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
 
   /* Horizontal flex elements wrap and stack */
-  div[style*="display: 'flex'"],
-  [style*="display: 'flex'"] {
-    flex-wrap: wrap;
+  div[style*="flex-direction"],
+  [style*="flex-direction"],
+  div[style*="flex-wrap"],
+  [style*="flex-wrap"] {
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
   }
   
   /* Hero flex buttons container */
-  .hero-buttons-container,
-  div[style*="flexWrap: 'wrap'"] {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  div[style*="flexWrap: 'wrap'"] a,
-  div[style*="flexWrap: 'wrap'"] button {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  /* Section layouts stacking */
-  div[style*="flexDirection: 'row'"],
-  [style*="flexDirection: 'row'"] {
+  .hero-buttons-container {
     flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
   }
-
+  
+  .hero-buttons-container a,
+  .hero-buttons-container button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
   /* Stats stacking */
-  div[style*="gap: 24"] {
+  div[style*="gap"] {
     flex-direction: column !important;
     gap: 16px !important;
   }
 
   /* Footer column stacking */
-  footer div[style*="gridTemplateColumns"] {
+  footer div[style*="grid-template-columns"] {
     grid-template-columns: 1fr !important;
     gap: 28px !important;
     text-align: center;
   }
-  footer div[style*="justifyContent: 'space-between'"] {
+  footer div[style*="justify-content"] {
     flex-direction: column !important;
     gap: 16px;
     align-items: center !important;
