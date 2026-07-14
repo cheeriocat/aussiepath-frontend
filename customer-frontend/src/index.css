@@ -293,6 +293,11 @@ ul { list-style: none; }
     scroll-snap-align: start !important;
     margin-bottom: 0 !important;
   }
+
+  /* Push hero content down on mobile screens to prevent navbar collisions */
+  .hero-container {
+    padding-top: 100px !important;
+  }
 }
 
 

@@ -54,7 +54,7 @@ export default function Home() {
           zIndex: 0,
         }} />
 
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="container hero-container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ maxWidth: 620 }}>
             {/* Label */}
             <div className="animate-fadeInUp" style={{
