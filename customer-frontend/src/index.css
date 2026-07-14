@@ -292,6 +292,50 @@ ul { list-style: none; }
     flex: 0 0 82% !important; /* show 82% of card, hinting next card is there */
     scroll-snap-align: start !important;
     margin-bottom: 0 !important;
+    display: flex !important; /* Force children to stretch to equal height */
+    flex-direction: column !important;
+  }
+
+  .mobile-swipe-item > div {
+    height: 100% !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Force swiper card buttons to stay at bottom */
+  .mobile-swipe-item > div a,
+  .mobile-swipe-item > div button {
+    margin-top: auto !important;
+  }
+
+  /* Opportunities Page Search Bar Mobile Layout */
+  .jobs-search-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 16px !important;
+    gap: 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .jobs-search-sep {
+    display: none !important; /* Hide line separator on mobile */
+  }
+
+  .jobs-search-bar > div {
+    border: 1px solid var(--gray-100) !important;
+    border-radius: 10px !important;
+    padding: 10px 14px !important;
+    width: 100% !important;
+    background: var(--white) !important;
+  }
+
+  .jobs-search-btn {
+    width: 100% !important;
+    padding: 12px 24px !important;
+    font-size: 0.95rem !important;
+    display: flex !important;
+    justify-content: center !important;
   }
 
   /* Push hero content down on mobile screens to prevent navbar collisions */

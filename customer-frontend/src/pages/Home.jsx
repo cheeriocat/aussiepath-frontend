@@ -11,6 +11,23 @@ export default function Home() {
   const [jobs, setJobs] = useState([]);
   const [loadingJobs, setLoadingJobs] = useState(true);
   const [scrollY, setScrollY] = useState(0);
+  const [activeJobIndex, setActiveJobIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleJobsScroll = (e) => {
+    if (!isMobile) return;
+    const scrollLeft = e.target.scrollLeft;
+    const itemWidth = e.target.clientWidth * 0.82 + 16;
+    const index = Math.round(scrollLeft / itemWidth);
+    setActiveJobIndex(index);
+  };
+
   const [recentApps] = useState([
     { id: 1, company: 'HealthCare NSW', logo: 'https://api.dicebear.com/7.x/initials/svg?seed=HN&backgroundColor=0d6efd', status: 'Under Review', statusColor: '#3498db', occupation: 'Registered Nurse' },
     { id: 2, company: 'Amazon Australia', logo: 'https://api.dicebear.com/7.x/initials/svg?seed=AA&backgroundColor=ff9900', status: 'Active', statusColor: '#27ae60', occupation: 'Software Engineer' },
@@ -155,9 +172,17 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className="mobile-swipe-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
+            <div className="mobile-swipe-list" onScroll={handleJobsScroll} style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
               {jobs.map((job, i) => (
-                <div className="mobile-swipe-item" key={job.id}>
+                <div 
+                  className="mobile-swipe-item" 
+                  key={job.id}
+                  style={{
+                    transform: isMobile && activeJobIndex === i ? 'scale(1)' : isMobile ? 'scale(0.93)' : 'scale(1)',
+                    opacity: isMobile && activeJobIndex !== i ? 0.85 : 1,
+                    transition: 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease',
+                  }}
+                >
                   <JobCard job={job} style={{ animationDelay: `${i * .1}s` }} />
                 </div>
               ))}
