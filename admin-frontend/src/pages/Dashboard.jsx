@@ -77,7 +77,7 @@ export default function Dashboard() {
       <Header />
       <main className="admin-main">
         {/* Stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 18, marginBottom: 28 }}>
+        <div className="dashboard-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 18, marginBottom: 28 }}>
           <StatCard icon={<RiUserLine />} label="Total Applicants" value={stats?.totalApplicants} color='#3498db' bg='rgba(52,152,219,.12)' delta={12} />
           <StatCard icon={<RiFileList3Line />} label="Pending Files" value={stats?.pendingFiles} color='#f39c12' bg='rgba(243,156,18,.12)' delta={-3} />
           <StatCard icon={<RiBriefcaseLine />} label="Active Jobs" value={stats?.activeJobs} color='#27ae60' bg='rgba(39,174,96,.12)' delta={8} />
@@ -86,7 +86,7 @@ export default function Dashboard() {
 
         {/* Application Management */}
         <div className="card animate-fadeInUp" style={{ padding: 24, marginBottom: 24, animationDelay: '.1s' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+          <div className="section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
             <div>
               <div className="section-title" style={{ color: 'var(--navy)' }}>Application Management</div>
               <div className="section-sub" style={{ color: 'var(--gray-500)' }}>Real-time overview of candidate filings in the Coastal region</div>
@@ -150,7 +150,7 @@ export default function Dashboard() {
           </div>
 
           {/* Pagination */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 16, padding: '12px 0 0', borderTop: '1px solid var(--gray-100)' }}>
+          <div className="table-pagination" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 16, padding: '12px 0 0', borderTop: '1px solid var(--gray-100)' }}>
             <span style={{ fontSize: '0.8rem', color: 'var(--gray-400)' }}>Showing 1-5 of 124 applicants</span>
             <div style={{ display: 'flex', gap: 4 }}>
               {[1, 2, 3, '...', 25].map((p, i) => (
@@ -167,10 +167,10 @@ export default function Dashboard() {
         </div>
 
         {/* Bottom Row */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+        <div className="dashboard-bottom-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
           {/* Job Market Pulse */}
           <div className="card animate-fadeInUp" style={{ padding: 22, animationDelay: '.2s' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+            <div className="section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
               <div>
                 <div className="section-title" style={{ color: 'var(--navy)' }}>Job Market Pulse</div>
                 <div className="section-sub" style={{ color: 'var(--gray-500)' }}>Live market listings</div>
@@ -235,8 +235,8 @@ export default function Dashboard() {
         </div>
 
         {/* Footer */}
-        <footer style={{ marginTop: 32, background: 'var(--gray-50)', border: '1px solid var(--gray-100)', borderRadius: 16, padding: '28px 32px', transition: 'all 0.3s ease' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 32 }}>
+        <footer className="dashboard-footer" style={{ marginTop: 32, background: 'var(--gray-50)', border: '1px solid var(--gray-100)', borderRadius: 16, padding: '28px 32px', transition: 'all 0.3s ease' }}>
+          <div className="dashboard-footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 32 }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                 <div style={{ width: 30, height: 30, borderRadius: 8, background: 'linear-gradient(135deg,#f5a623,#e0941a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 14, color: '#0d1f3c' }}>A</div>
@@ -262,7 +262,7 @@ export default function Dashboard() {
       {/* Edit Status Modal */}
       {editApp && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.5)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setEditApp(null)}>
-          <div style={{ background: 'var(--white)', borderRadius: 16, padding: 28, width: 380, border: '1px solid var(--gray-100)', boxShadow: 'var(--shadow-lg)' }} onClick={e => e.stopPropagation()}>
+          <div className="responsive-modal" style={{ background: 'var(--white)', borderRadius: 16, padding: 28, width: 380, border: '1px solid var(--gray-100)', boxShadow: 'var(--shadow-lg)' }} onClick={e => e.stopPropagation()}>
             <h3 style={{ fontWeight: 800, marginBottom: 4, color: 'var(--navy)' }}>Update Application Status</h3>
             <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem', marginBottom: 20 }}>{editApp.applicantName} — {editApp.occupation}</p>
             <select value={statusUpdate} onChange={e => setStatusUpdate(e.target.value)} style={{ width: '100%', padding: '11px 14px', borderRadius: 8, border: '1.5px solid var(--gray-100)', fontSize: '0.9rem', color: 'var(--gray-800)', background: 'var(--white)', marginBottom: 16, outline: 'none' }}>

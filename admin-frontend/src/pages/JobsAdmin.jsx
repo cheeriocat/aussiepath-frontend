@@ -66,7 +66,7 @@ export default function JobsAdmin() {
       <Header title="Jobs" subtitle="Manage job listings" />
       <main className="admin-main">
         {/* Header Row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+        <div className="page-heading" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <div>
             <h2 style={{ fontWeight: 800, fontSize: '1.3rem', color: 'var(--navy)' }}>Job Market Listings</h2>
             <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem' }}>{jobs.length} active job listings</p>
@@ -88,7 +88,7 @@ export default function JobsAdmin() {
             <FiLoader size={28} color='#f5a623' style={{ animation: 'spin 1s linear infinite' }} />
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(340px,1fr))', gap: 18 }}>
+          <div className="jobs-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(340px,1fr))', gap: 18 }}>
             {jobs.map(job => (
               <div key={job.id} className="card" style={{ padding: 20 }}>
                 <div style={{ display: 'flex', gap: 12, marginBottom: 14 }}>
@@ -128,7 +128,7 @@ export default function JobsAdmin() {
           <div style={{ background: 'var(--white)', borderRadius: 16, padding: 28, width: '100%', maxWidth: 500, maxHeight: '90vh', overflowY: 'auto', border: '1px solid var(--gray-100)' }} onClick={e => e.stopPropagation()}>
             <h3 style={{ fontWeight: 800, fontSize: '1.15rem', color: 'var(--navy)', marginBottom: 20 }}>{modal === 'add' ? '+ Add New Job Listing' : 'Edit Job Listing'}</h3>
             <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+              <div className="job-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
                 {[['Job Title', 'title', true], ['Company', 'company', true], ['Location', 'location', true], ['Salary', 'salary', false]].map(([label, key, req]) => (
                   <div key={key}>
                     <label style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--gray-500)', display: 'block', marginBottom: 5 }}>{label}</label>

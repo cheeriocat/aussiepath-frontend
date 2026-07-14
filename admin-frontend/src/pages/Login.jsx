@@ -31,12 +31,12 @@ export default function Login() {
   });
 
   return (
-    <div style={{
+    <div className="login-page" style={{
       minHeight: '100vh', display: 'flex',
       background: 'linear-gradient(135deg,#0b1a30 0%,#1a2d5a 60%,#0d1f3c 100%)',
     }}>
       {/* Left decorative panel */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px', color: '#fff' }}>
+      <div className="login-hero" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px', color: '#fff' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 48 }}>
           <div style={{ width: 44, height: 44, borderRadius: 12, background: 'linear-gradient(135deg,#f5a623,#e0941a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 22, color: '#0d1f3c' }}>A</div>
           <span style={{ fontWeight: 800, fontSize: '1.3rem' }}>AussiePath</span>
@@ -53,7 +53,7 @@ export default function Login() {
         </p>
 
         {/* Stats preview */}
-        <div style={{ display: 'flex', gap: 20, marginTop: 40 }}>
+        <div className="login-stats" style={{ display: 'flex', gap: 20, marginTop: 40 }}>
           {[['1,284', 'Applicants'], ['156', 'Active Jobs'], ['892', 'Successes']].map(([v, l]) => (
             <div key={l} style={{ background: 'rgba(255,255,255,.08)', borderRadius: 12, padding: '14px 20px', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,.1)' }}>
               <div style={{ fontWeight: 900, fontSize: '1.4rem', color: '#f5a623' }}>{v}</div>
@@ -64,9 +64,9 @@ export default function Login() {
       </div>
 
       {/* Right Login Form */}
-      <div style={{ width: 460, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px', background: 'rgba(255,255,255,.03)', backdropFilter: 'blur(20px)', borderLeft: '1px solid rgba(255,255,255,.08)' }}>
+      <div className="login-panel" style={{ width: 460, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px', background: 'rgba(255,255,255,.03)', backdropFilter: 'blur(20px)', borderLeft: '1px solid rgba(255,255,255,.08)' }}>
         <div style={{ width: '100%', maxWidth: 380 }}>
-          <div style={{ background: '#fff', borderRadius: 20, padding: 36, boxShadow: '0 24px 60px rgba(0,0,0,.3)' }}>
+          <div className="login-card" style={{ background: '#fff', borderRadius: 20, padding: 36, boxShadow: '0 24px 60px rgba(0,0,0,.3)' }}>
             <h2 style={{ fontWeight: 800, fontSize: '1.5rem', color: '#0d1f3c', marginBottom: 4 }}>Welcome back</h2>
             <p style={{ color: '#64748b', fontSize: '0.875rem', marginBottom: 28 }}>Sign in to your admin account</p>
 

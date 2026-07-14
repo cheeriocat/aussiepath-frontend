@@ -67,7 +67,7 @@ export default function Applications() {
       <Header title="Applications" subtitle="Manage all visa applications" />
       <main className="admin-main">
         {/* Page Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+        <div className="page-heading" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <div>
             <h2 style={{ fontWeight: 800, fontSize: '1.3rem', color: 'var(--navy)' }}>All Applications</h2>
             <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem' }}>{total} total applicants in the system</p>
@@ -165,7 +165,7 @@ export default function Applications() {
           )}
 
           {/* Pagination */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 20px', borderTop: '1px solid var(--gray-100)' }}>
+          <div className="table-pagination" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 20px', borderTop: '1px solid var(--gray-100)' }}>
             <span style={{ fontSize: '0.8rem', color: 'var(--gray-400)' }}>Showing {Math.min((page - 1) * LIMIT + 1, total)}-{Math.min(page * LIMIT, total)} of {total} applicants</span>
             <div style={{ display: 'flex', gap: 4 }}>
               <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} style={{ padding: '6px 12px', borderRadius: 7, border: '1px solid var(--gray-100)', background: 'var(--white)', cursor: page === 1 ? 'not-allowed' : 'pointer', fontSize: '0.8rem', color: 'var(--gray-600)', opacity: page === 1 ? .5 : 1 }}>← Prev</button>
@@ -181,7 +181,7 @@ export default function Applications() {
       {/* Edit Modal */}
       {editApp && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.5)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }} onClick={() => setEditApp(null)}>
-          <div style={{ background: 'var(--white)', borderRadius: 16, padding: 28, width: '100%', maxWidth: 460, border: '1px solid var(--gray-100)' }} onClick={e => e.stopPropagation()}>
+          <div className="responsive-modal" style={{ background: 'var(--white)', borderRadius: 16, padding: 28, width: '100%', maxWidth: 460, border: '1px solid var(--gray-100)' }} onClick={e => e.stopPropagation()}>
             <h3 style={{ fontWeight: 800, fontSize: '1.1rem', marginBottom: 20, color: 'var(--navy)' }}>Edit Application — {editApp.applicantName}</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[['Applicant Name', 'applicantName'], ['Email', 'email'], ['Occupation', 'occupation'], ['Visa Type', 'visaType']].map(([label, key]) => (

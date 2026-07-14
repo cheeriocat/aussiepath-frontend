@@ -8,7 +8,7 @@ export default function Settings() {
     <>
       <Header title="Settings" subtitle="Account & system settings" />
       <main className="admin-main">
-        <div className="card" style={{ padding: 32, maxWidth: 560 }}>
+        <div className="card settings-card" style={{ padding: 32, maxWidth: 560 }}>
           <h2 style={{ fontWeight: 800, fontSize: '1.15rem', color: 'var(--navy)', marginBottom: 20 }}>Account Settings</h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28, padding: '16px', background: 'var(--gray-50)', borderRadius: 12, border: '1px solid var(--gray-100)', transition: 'all 0.3s ease' }}>
             <img src={user?.avatar} alt="" style={{ width: 56, height: 56, borderRadius: '50%', border: '3px solid #f5a623' }} />
@@ -19,7 +19,7 @@ export default function Settings() {
             </div>
           </div>
           {[['Name', user?.name], ['Email', user?.email], ['Role', 'Administrator'], ['API URL', 'http://localhost:5000/api']].map(([label, val]) => (
-            <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-100)', fontSize: '0.875rem', transition: 'all 0.3s ease' }}>
+            <div key={label} className="settings-row" style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--gray-100)', fontSize: '0.875rem', transition: 'all 0.3s ease' }}>
               <span style={{ color: 'var(--gray-500)', fontWeight: 500 }}>{label}</span>
               <span style={{ color: 'var(--gray-800)', fontWeight: 600 }}>{val}</span>
             </div>
