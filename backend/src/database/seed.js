@@ -20,38 +20,42 @@ function seed() {
   /* ──────────────────────────────────────────────────────────────────────────
    * USERS (Admins & Customers)
    * ──────────────────────────────────────────────────────────────────────── */
-  const userCount = db.prepare('SELECT COUNT(*) AS c FROM users').get().c;
-  if (userCount === 0) {
+  // Ensure default admin user exists
+  const adminExists = db.prepare("SELECT id FROM users WHERE email = 'admin@aussiepath.com.au'").get();
+  if (!adminExists) {
     const insertUser = db.prepare(`
       INSERT INTO users (id, name, email, password, role, avatar, created_at)
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `);
+    insertUser.run(
+      uuidv4(),
+      'Admin User',
+      'admin@aussiepath.com.au',
+      bcrypt.hashSync('admin123', 10),
+      'admin',
+      'https://api.dicebear.com/7.x/avataaars/svg?seed=AdminUser',
+      now()
+    );
+    console.log('  ✔  Seeded default admin user');
+  }
 
-    const users = [
-      {
-        id:       uuidv4(),
-        name:     'Admin User',
-        email:    'admin@aussiepath.com.au',
-        password: bcrypt.hashSync('admin123', 10),
-        role:     'admin',
-        avatar:   'https://api.dicebear.com/7.x/avataaars/svg?seed=AdminUser',
-        created_at: now(),
-      },
-      {
-        id:       uuidv4(),
-        name:     'John Customer',
-        email:    'customer@email.com',
-        password: bcrypt.hashSync('customer123', 10),
-        role:     'customer',
-        avatar:   'https://api.dicebear.com/7.x/avataaars/svg?seed=JohnCustomer',
-        created_at: now(),
-      },
-    ];
-
-    const insertMany = db.transaction(rows => rows.forEach(r =>
-      insertUser.run(r.id, r.name, r.email, r.password, r.role, r.avatar, r.created_at)));
-    insertMany(users);
-    console.log(`  ✔  Seeded ${users.length} user(s)`);
+  // Ensure default customer user exists
+  const customerExists = db.prepare("SELECT id FROM users WHERE email = 'customer@email.com'").get();
+  if (!customerExists) {
+    const insertUser = db.prepare(`
+      INSERT INTO users (id, name, email, password, role, avatar, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+    insertUser.run(
+      uuidv4(),
+      'John Customer',
+      'customer@email.com',
+      bcrypt.hashSync('customer123', 10),
+      'customer',
+      'https://api.dicebear.com/7.x/avataaars/svg?seed=JohnCustomer',
+      now()
+    );
+    console.log('  ✔  Seeded default customer user');
   }
 
   /* ──────────────────────────────────────────────────────────────────────────
