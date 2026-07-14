@@ -25,9 +25,9 @@ export default function Eligibility() {
       <div style={{ background: 'var(--white)', padding: '56px 0', borderBottom: '1px solid var(--gray-100)', transition: 'all 0.3s ease' }}>
         <div className="container">
           <h2 style={{ textAlign: 'center', fontWeight: 800, fontSize: '1.6rem', color: 'var(--navy)', marginBottom: 40 }}>How the Process Works</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 24 }}>
+          <div className="mobile-swipe-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 24 }}>
             {steps.map((s, i) => (
-              <div key={i} style={{
+              <div className="mobile-swipe-item" key={i} style={{
                 background: 'var(--gray-50)', borderRadius: 14, padding: 24,
                 border: '1px solid var(--gray-100)', textAlign: 'center',
                 transition: 'all .25s',
@@ -55,13 +55,13 @@ export default function Eligibility() {
         <div className="container">
           <h2 style={{ textAlign: 'center', fontWeight: 800, fontSize: '1.6rem', color: 'var(--navy)', marginBottom: 8 }}>Common Skilled Visa Types</h2>
           <p style={{ textAlign: 'center', color: 'var(--gray-500)', marginBottom: 36 }}>Understanding which visa suits your circumstances</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20 }}>
+          <div className="mobile-swipe-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20 }}>
             {[
               { code: '189', name: 'Skilled Independent', desc: 'Points-tested visa for skilled workers not sponsored by an employer or family member.', points: '65+', pr: true },
               { code: '190', name: 'Skilled Nominated', desc: 'Points-tested visa for skilled workers nominated by a state or territory government.', points: '65+', pr: true },
               { code: '482', name: 'Temporary Skill Shortage', desc: 'Employer-sponsored visa allowing skilled workers to live and work in Australia temporarily.', points: 'N/A', pr: false },
             ].map(v => (
-              <div key={v.code} style={{ borderRadius: 14, padding: 24, border: '1px solid var(--gray-100)', background: 'var(--gray-50)' }}>
+              <div className="mobile-swipe-item" key={v.code} style={{ borderRadius: 14, padding: 24, border: '1px solid var(--gray-100)', background: 'var(--gray-50)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                   <span style={{ fontWeight: 900, fontSize: '1.3rem', color: '#f5a623' }}>Subclass {v.code}</span>
                   {v.pr && <span style={{ padding: '3px 10px', background: 'rgba(39,174,96,.15)', color: '#27ae60', borderRadius: 20, fontSize: '0.72rem', fontWeight: 700 }}>PR Pathway</span>}

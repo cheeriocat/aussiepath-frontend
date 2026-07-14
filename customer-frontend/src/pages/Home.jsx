@@ -149,14 +149,18 @@ export default function Home() {
 
           {/* Job Cards Grid */}
           {loadingJobs ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
+            <div className="mobile-swipe-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
               {[1, 2, 3].map(i => (
-                <div key={i} style={{ background: '#fff', borderRadius: 14, height: 320, border: '1px solid #e2e8f0', animation: 'pulse 1.5s infinite' }} />
+                <div className="mobile-swipe-item" key={i} style={{ background: 'var(--white)', borderRadius: 14, height: 320, border: '1px solid var(--gray-100)', animation: 'pulse 1.5s infinite' }} />
               ))}
             </div>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
-              {jobs.map((job, i) => <JobCard key={job.id} job={job} style={{ animationDelay: `${i * .1}s` }} />)}
+            <div className="mobile-swipe-list" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24 }}>
+              {jobs.map((job, i) => (
+                <div className="mobile-swipe-item" key={job.id}>
+                  <JobCard job={job} style={{ animationDelay: `${i * .1}s` }} />
+                </div>
+              ))}
             </div>
           )}
         </div>

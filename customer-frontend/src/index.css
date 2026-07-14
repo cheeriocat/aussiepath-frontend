@@ -214,5 +214,28 @@ ul { list-style: none; }
   .container {
     padding: 0 16px;
   }
+
+  /* Horizontal swipe layouts for mobile viewports */
+  .mobile-swipe-list {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 8px 16px 20px !important;
+    margin: 0 -16px !important; /* bleed edge of container for swipe effect */
+    gap: 16px !important;
+  }
+
+  .mobile-swipe-list::-webkit-scrollbar {
+    display: none !important; /* hide scrollbars to keep UI clean */
+  }
+  
+  .mobile-swipe-item {
+    flex: 0 0 82% !important; /* show 82% of card, hinting next card is there */
+    scroll-snap-align: start !important;
+    margin-bottom: 0 !important;
+  }
 }
+
 
