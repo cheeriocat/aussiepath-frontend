@@ -99,7 +99,7 @@ export default function Home() {
             </div>
 
             {/* Stats */}
-            <div className="animate-fadeInUp" style={{ display: 'flex', gap: 24, animationDelay: '.4s' }}>
+            <div className="home-stats-row animate-fadeInUp" style={{ display: 'flex', gap: 24, animationDelay: '.4s' }}>
               {[
                 { icon: <FiUsers size={18} />, value: '895', label: 'Australian Paths', color: '#f5a623' },
                 { icon: <FiCheckCircle size={18} />, value: '124', label: 'Eligible Paths', color: '#27ae60' },
@@ -129,7 +129,7 @@ export default function Home() {
       <section style={{ padding: '80px 0', background: 'var(--gray-50)' }}>
         <div className="container">
           {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 36 }}>
+          <div className="opportunities-header">
             <div>
               <span className="section-label">OPPORTUNITIES</span>
               <h2 className="section-title">Latest Opportunities in Australia</h2>
@@ -140,7 +140,7 @@ export default function Home() {
               color: 'var(--navy)', fontWeight: 700, fontSize: '0.875rem',
               padding: '10px 18px', borderRadius: 8,
               border: '1.5px solid var(--navy)', transition: 'all .2s',
-              whiteSpace: 'nowrap', marginTop: 24,
+              whiteSpace: 'nowrap', marginTop: 12,
             }}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--navy)'; e.currentTarget.style.color = 'var(--white)'; }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--navy)'; }}
