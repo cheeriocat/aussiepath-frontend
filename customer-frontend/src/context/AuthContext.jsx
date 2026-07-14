@@ -8,14 +8,14 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('aussiepath_customer_token');
-    const stored = localStorage.getItem('aussiepath_customer_user');
+    const token = localStorage.getItem('aussiepath_token');
+    const stored = localStorage.getItem('aussiepath_user');
     if (token && stored) {
       try {
         setUser(JSON.parse(stored));
       } catch (e) {
-        localStorage.removeItem('aussiepath_customer_token');
-        localStorage.removeItem('aussiepath_customer_user');
+        localStorage.removeItem('aussiepath_token');
+        localStorage.removeItem('aussiepath_user');
       }
     }
     setLoading(false);
@@ -24,16 +24,16 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     const { data } = await api.post('/auth/login', { email, password });
     if (data.success) {
-      localStorage.setItem('aussiepath_customer_token', data.token);
-      localStorage.setItem('aussiepath_customer_user', JSON.stringify(data.user));
+      localStorage.setItem('aussiepath_token', data.token);
+      localStorage.setItem('aussiepath_user', JSON.stringify(data.user));
       setUser(data.user);
     }
     return data;
   };
 
   const logout = () => {
-    localStorage.removeItem('aussiepath_customer_token');
-    localStorage.removeItem('aussiepath_customer_user');
+    localStorage.removeItem('aussiepath_token');
+    localStorage.removeItem('aussiepath_user');
     setUser(null);
   };
 

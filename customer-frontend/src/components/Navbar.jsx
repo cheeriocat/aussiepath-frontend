@@ -75,7 +75,7 @@ export default function Navbar() {
             ['/', 'Home'],
             ['/jobs', 'Jobs'],
             ['/eligibility', 'Eligibility'],
-            ...(isAdmin ? [[import.meta.env.VITE_ADMIN_URL || 'http://localhost:3001/dashboard', 'Admin Panel']] : []),
+            ...(isAdmin ? [['/admin/dashboard', 'Admin Panel']] : []),
           ].map(([href, label]) => {
             const external = href.startsWith('http');
             const Tag = external ? 'a' : Link;

@@ -18,7 +18,11 @@ export default function Login() {
     try {
       const data = await login(form.email, form.password);
       if (data.success) {
-        navigate('/');
+        if (data.user.role === 'admin') {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/');
+        }
       } else {
         setError(data.message || 'Login failed');
       }
