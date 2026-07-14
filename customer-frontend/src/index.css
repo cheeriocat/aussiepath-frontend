@@ -120,6 +120,13 @@ ul { list-style: none; }
   flex: 1;
 }
 
+.nav-container {
+  width: 100%;
+  max-width: 100% !important;
+  margin: 0;
+  padding: 0 40px;
+}
+
 .opportunities-header {
   display: flex;
   justify-content: space-between;
@@ -341,6 +348,10 @@ ul { list-style: none; }
   /* Push hero content down on mobile screens to prevent navbar collisions */
   .hero-container {
     padding-top: 100px !important;
+  }
+
+  .nav-container {
+    padding: 0 16px !important;
   }
 
   /* Responsive Brand text wrapping constraint on tiny viewports */

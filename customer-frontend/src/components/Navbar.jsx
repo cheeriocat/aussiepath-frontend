@@ -46,7 +46,7 @@ export default function Navbar() {
       transition: 'all .3s ease',
       borderBottom: '1px solid rgba(255,255,255,.08)',
     }}>
-      <div className="container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 16, justifyContent: 'space-between' }}>
+      <div className="nav-container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 16, justifyContent: 'space-between' }}>
         {/* Left Side: Sri Lanka Flag + Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
           <img 
