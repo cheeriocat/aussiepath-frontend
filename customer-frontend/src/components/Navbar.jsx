@@ -49,7 +49,12 @@ export default function Navbar() {
       <div className="container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 16, justifyContent: 'space-between' }}>
         {/* Left Side: Sri Lanka Flag + Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-          <span title="Sri Lanka" style={{ fontSize: '1.45rem', lineHeight: 1, cursor: 'default', userSelect: 'none', display: 'flex', alignItems: 'center' }}>🇱🇰</span>
+          <img 
+            src="https://flagcdn.com/24x18/lk.png" 
+            alt="Sri Lanka" 
+            title="Sri Lanka"
+            style={{ width: 22, height: 16.5, borderRadius: 2, objectFit: 'cover', userSelect: 'none' }} 
+          />
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{
               width: 32, height: 32, borderRadius: 8,
@@ -202,7 +207,12 @@ export default function Navbar() {
           </button>
 
           {/* Australia Flag */}
-          <span title="Australia" style={{ fontSize: '1.45rem', lineHeight: 1, cursor: 'default', userSelect: 'none', display: 'flex', alignItems: 'center', marginLeft: 4 }}>🇦🇺</span>
+          <img 
+            src="https://flagcdn.com/24x18/au.png" 
+            alt="Australia" 
+            title="Australia"
+            style={{ width: 22, height: 16.5, borderRadius: 2, objectFit: 'cover', userSelect: 'none', marginLeft: 4 }} 
+          />
         </div>
       </div>
     </nav>
