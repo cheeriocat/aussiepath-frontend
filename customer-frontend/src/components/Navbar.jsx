@@ -47,14 +47,24 @@ export default function Navbar() {
       borderBottom: '1px solid rgba(255,255,255,.08)',
     }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', height: 68, gap: 16, justifyContent: 'space-between' }}>
-        {/* Left Side: Sri Lanka Flag + Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-          <img 
-            src="https://flagcdn.com/24x18/lk.png" 
-            alt="Sri Lanka" 
-            title="Sri Lanka"
-            style={{ width: 22, height: 16.5, borderRadius: 2, objectFit: 'cover', userSelect: 'none' }} 
-          />
+        {/* Left Side: Both Flags Side-by-Side + Logo */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <img 
+              src="https://flagcdn.com/32x24/lk.png" 
+              alt="Sri Lanka" 
+              title="Sri Lanka"
+              className="nav-flag"
+              style={{ width: 28, height: 21, borderRadius: 3, objectFit: 'cover', userSelect: 'none', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', cursor: 'pointer' }} 
+            />
+            <img 
+              src="https://flagcdn.com/32x24/au.png" 
+              alt="Australia" 
+              title="Australia"
+              className="nav-flag"
+              style={{ width: 28, height: 21, borderRadius: 3, objectFit: 'cover', userSelect: 'none', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', cursor: 'pointer' }} 
+            />
+          </div>
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{
               width: 32, height: 32, borderRadius: 8,
@@ -205,14 +215,6 @@ export default function Navbar() {
           }}>
             {menuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
           </button>
-
-          {/* Australia Flag */}
-          <img 
-            src="https://flagcdn.com/24x18/au.png" 
-            alt="Australia" 
-            title="Australia"
-            style={{ width: 22, height: 16.5, borderRadius: 2, objectFit: 'cover', userSelect: 'none', marginLeft: 4 }} 
-          />
         </div>
       </div>
     </nav>

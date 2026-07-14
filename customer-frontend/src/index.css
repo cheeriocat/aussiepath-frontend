@@ -351,4 +351,16 @@ ul { list-style: none; }
   }
 }
 
+/* Flag hover micro-animations */
+.nav-flag {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.nav-flag:hover {
+  transform: scale(1.22) translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+
 
