@@ -1,0 +1,23 @@
+{
+  "name": "aussiepath-backend",
+  "version": "2.0.0",
+  "description": "AussiePath Visa Consultancy Backend API — SQLite Edition",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/database/seed.js",
+    "db:shell": "node src/database/shell.js",
+    "db:reset": "node -e \"require('fs').existsSync('./data/aussiepath.db') && require('fs').unlinkSync('./data/aussiepath.db'); console.log('DB reset. Restart server to re-seed.')\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

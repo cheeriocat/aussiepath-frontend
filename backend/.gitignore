@@ -1,0 +1,12 @@
+# SQLite database files
+data/aussiepath.db
+data/aussiepath.db-shm
+data/aussiepath.db-wal
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.local
