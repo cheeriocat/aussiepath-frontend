@@ -29,16 +29,9 @@ export default function AdminLayout() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--off-white)', display: 'flex' }}>
+    <div className="admin-layout">
       <Sidebar />
-      <div style={{
-        flex: 1,
-        marginLeft: 'var(--sidebar-w)',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        transition: 'all 0.3s ease',
-      }} className="admin-main-wrapper">
+      <div className="admin-main-wrapper">
         <Outlet />
       </div>
     </div>

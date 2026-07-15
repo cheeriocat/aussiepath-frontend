@@ -15,21 +15,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside style={{
-      width: 'var(--sidebar-w)',
-      background: '#0d1f3c',
-      color: '#fff',
-      height: '100vh',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      zIndex: 100,
-      display: 'flex',
-      flexDirection: 'column',
-      borderRight: '1px solid rgba(255,255,255,.05)',
-      boxShadow: '2px 0 10px rgba(0,0,0,.15)',
-      transition: 'all 0.3s ease',
-    }} className="admin-sidebar">
+    <aside className="admin-sidebar">
       {/* Brand */}
       <div style={{ height: 'var(--header-h)', display: 'flex', alignItems: 'center', padding: '0 24px', borderBottom: '1px solid rgba(255,255,255,.05)', gap: 10 }}>
         <div style={{

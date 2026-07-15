@@ -394,10 +394,49 @@ ul { list-style: none; }
   animation-delay: 2.1s; /* Staggered wave effect */
 }
 
-.admin-layout { display: flex; min-height: 100vh; width: 100%; min-width: 0 !important; }
-.admin-content { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-width: 0 !important; width: 100%; }
-.admin-main { padding: 28px; flex: 1; min-width: 0 !important; width: 100%; }
-.admin-main-wrapper { min-width: 0 !important; width: 100%; }
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-width: 0 !important;
+  position: relative;
+  background: var(--off-white);
+  box-shadow: 0 0 40px rgba(0,0,0,0.06);
+}
+
+.admin-sidebar {
+  width: var(--sidebar-w);
+  background: #0d1f3c;
+  color: #fff;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,.05);
+  box-shadow: 2px 0 10px rgba(0,0,0,.15);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.admin-main-wrapper {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-width: 0 !important;
+  width: 100%;
+}
+
+.admin-main { 
+  padding: 28px; 
+  flex: 1; 
+  min-width: 0 !important; 
+  width: 100%; 
+}
 
 .btn-danger { background: var(--red-light); color: var(--red); padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; transition: all var(--transition); }
 .btn-danger:hover { background: var(--red); color: var(--white); }
@@ -413,8 +452,18 @@ ul { list-style: none; }
 
 /* Admin Mobile Responsiveness Media Queries */
 @media (max-width: 991px) {
+  .admin-layout {
+    max-width: 100% !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
   /* Hide sidebar off-screen by default */
   .admin-sidebar {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    height: 100vh !important;
     transform: translateX(-100%);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
