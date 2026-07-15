@@ -394,10 +394,10 @@ ul { list-style: none; }
   animation-delay: 2.1s; /* Staggered wave effect */
 }
 
-/* ─── Admin Layout Overrides & Styling ─────────────────────────────────────── */
-.admin-layout { display: flex; min-height: 100vh; }
-.admin-content { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
-.admin-main { padding: 28px; flex: 1; }
+.admin-layout { display: flex; min-height: 100vh; width: 100%; min-width: 0 !important; }
+.admin-content { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-width: 0 !important; width: 100%; }
+.admin-main { padding: 28px; flex: 1; min-width: 0 !important; width: 100%; }
+.admin-main-wrapper { min-width: 0 !important; width: 100%; }
 
 .btn-danger { background: var(--red-light); color: var(--red); padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; transition: all var(--transition); }
 .btn-danger:hover { background: var(--red); color: var(--white); }
@@ -451,9 +451,41 @@ ul { list-style: none; }
     padding: 20px 16px;
   }
 
-  .dashboard-stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; margin-bottom: 20px !important; }
-  .dashboard-bottom-grid, .dashboard-footer-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-  .dashboard-footer { padding: 22px 20px !important; margin-top: 24px !important; }
+  .dashboard-stats { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important; 
+    gap: 12px !important; 
+    margin-bottom: 20px !important; 
+  }
+  
+  .dashboard-bottom-grid { 
+    grid-template-columns: 1fr !important; 
+    gap: 16px !important; 
+  }
+
+  .dashboard-footer { 
+    padding: 24px 20px !important; 
+    margin-top: 24px !important; 
+    text-align: center !important;
+  }
+
+  /* Center admin dashboard footer content and list columns */
+  .dashboard-footer-grid { 
+    grid-template-columns: 1fr !important; 
+    gap: 28px !important; 
+    text-align: center !important;
+  }
+
+  .dashboard-footer-grid > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .dashboard-footer-grid > div:first-child > div {
+    justify-content: center !important;
+  }
+
   .jobs-grid { grid-template-columns: 1fr !important; }
   .job-form-grid { grid-template-columns: 1fr !important; }
   .responsive-modal { width: calc(100vw - 32px) !important; max-width: none !important; padding: 22px !important; }

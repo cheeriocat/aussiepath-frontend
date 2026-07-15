@@ -47,6 +47,7 @@ export default function Sidebar() {
           <NavLink
             key={item.label}
             to={item.path}
+            onClick={() => document.body.classList.remove('sidebar-open')}
             style={({ isActive }) => ({
               display: 'flex',
               alignItems: 'center',
@@ -82,7 +83,7 @@ export default function Sidebar() {
       {/* Footer Controls */}
       <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 6, borderTop: '1px solid rgba(255,255,255,.05)' }}>
         {/* Go back to Client Portal link */}
-        <Link to="/" style={{
+        <Link to="/" onClick={() => document.body.classList.remove('sidebar-open')} style={{
           display: 'flex', alignItems: 'center', gap: 12,
           padding: '12px 16px', borderRadius: 8, fontSize: '0.85rem',
           color: 'rgba(255,255,255,.65)', transition: 'all .2s'
