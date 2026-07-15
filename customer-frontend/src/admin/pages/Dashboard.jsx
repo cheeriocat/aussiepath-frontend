@@ -98,7 +98,7 @@ export default function Dashboard() {
           </div>
 
           {/* Table */}
-          <div style={{ overflowX: 'auto' }}>
+          <div style={{ overflowX: 'auto', width: '100%', maxWidth: '100%' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr style={{ borderBottom: '2px solid var(--gray-100)' }}>
@@ -262,7 +262,7 @@ export default function Dashboard() {
       {/* Edit Status Modal */}
       {editApp && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.5)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setEditApp(null)}>
-          <div className="responsive-modal" style={{ background: 'var(--white)', borderRadius: 16, padding: 28, width: 380, border: '1px solid var(--gray-100)', boxShadow: 'var(--shadow-lg)' }} onClick={e => e.stopPropagation()}>
+          <div className="responsive-modal" style={{ background: 'var(--white)', borderRadius: 16, padding: 28, width: '100%', maxWidth: 380, border: '1px solid var(--gray-100)', boxShadow: 'var(--shadow-lg)' }} onClick={e => e.stopPropagation()}>
             <h3 style={{ fontWeight: 800, marginBottom: 4, color: 'var(--navy)' }}>Update Application Status</h3>
             <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem', marginBottom: 20 }}>{editApp.applicantName} — {editApp.occupation}</p>
             <select value={statusUpdate} onChange={e => setStatusUpdate(e.target.value)} style={{ width: '100%', padding: '11px 14px', borderRadius: 8, border: '1.5px solid var(--gray-100)', fontSize: '0.9rem', color: 'var(--gray-800)', background: 'var(--white)', marginBottom: 16, outline: 'none' }}>

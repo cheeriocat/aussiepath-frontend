@@ -455,6 +455,7 @@ ul { list-style: none; }
     max-width: 100% !important;
     padding: 0 !important;
     box-shadow: none !important;
+    overflow-x: hidden !important;
   }
 
   /* Hide sidebar off-screen by default */
@@ -475,6 +476,8 @@ ul { list-style: none; }
   /* Shift main content to full width */
   .admin-main-wrapper {
     margin-left: 0 !important;
+    overflow-x: hidden !important;
+    max-width: 100% !important;
   }
 
   /* Show hamburger menu toggle in Header */

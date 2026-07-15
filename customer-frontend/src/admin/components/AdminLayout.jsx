@@ -6,9 +6,12 @@ import { useAuth } from '../../context/AuthContext';
 export default function AdminLayout() {
   const { user, loading } = useAuth();
 
-  // Close mobile sidebar on route change
+  // Close mobile sidebar on route change & cleanup on logout/unmount
   useEffect(() => {
     document.body.classList.remove('sidebar-open');
+    return () => {
+      document.body.classList.remove('sidebar-open');
+    };
   }, []);
 
   if (loading) {

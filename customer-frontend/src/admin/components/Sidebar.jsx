@@ -82,7 +82,7 @@ export default function Sidebar() {
         </Link>
 
         {/* Log Out button */}
-        <button onClick={logout} style={{
+        <button onClick={() => { document.body.classList.remove('sidebar-open'); logout(); }} style={{
           display: 'flex', alignItems: 'center', gap: 12, width: '100%',
           padding: '12px 16px', borderRadius: 8, fontSize: '0.85rem',
           color: '#ff6b6b', background: 'transparent', border: 'none',

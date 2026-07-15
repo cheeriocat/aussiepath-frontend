@@ -104,7 +104,7 @@ export default function Applications() {
               <FiLoader size={28} color='#f5a623' style={{ animation: 'spin 1s linear infinite' }} />
             </div>
           ) : (
-            <div style={{ overflowX: 'auto' }}>
+            <div style={{ overflowX: 'auto', width: '100%', maxWidth: '100%' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead style={{ background: 'var(--gray-50)', borderBottom: '2px solid var(--gray-100)' }}>
                   <tr>
